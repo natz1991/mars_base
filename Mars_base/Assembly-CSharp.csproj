@@ -66,9 +66,6 @@
     <Compile Include="Assets/Kevin Iglesias/Basic Motions/_DemoScene/Scripts/BasicMotionsCamera.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets/Kevin Iglesias/Basic Motions/Textures/BasicMotionsShader.shader" />
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="UnityEngine">
       <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>
       <Private>False</Private>

@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/PolyAngel_Space Pack/Scenes/Demo Scene.unity
+- path: Assets/Scenes/Test1_mars.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
