@@ -37,7 +37,7 @@ namespace KevinIglesias
         Roll,
         Crouch,
     }
-    
+
     //CLASS FOR HANDLING PLAYER INPUTS
     public class InputSent
     {
@@ -66,6 +66,7 @@ namespace KevinIglesias
     ///MAIN CLASS//
     public class BasicMotionsCharacterController : MonoBehaviour
     {
+
         [Header("[CHARACTER STATE]")]
         public CharacterState characterState; //CURRENT STATE OF THE CHARACTER
         public void ChangeState(CharacterState newState) //FUNCTION TO MODIFY CHARACTER STATE
@@ -84,7 +85,16 @@ namespace KevinIglesias
             characterState = newState;
             ChangeColliderSize(newState); //CHANGE COLLIDER CENTER AND SIZE ACCORDING TO CURRENT STATE
         }
-        
+
+        //Controll State
+        [Header("[Controll State]")]
+        //New HUD controller State
+        public bool idle_player;
+        public bool fwd_player;
+        public bool back_player;
+        public bool left_player;
+        public bool right_player;
+
         [Header("[ANIMATOR]")]
         //ASSIGN HERE THE ANIMATOR FROM BOTH CHARACTERS
         //TO MAKE CHARACTER SWITCH POSSIBLE IN THE MIDDLE OF AN ANIMATION BOTH ANIMATORS ARE USED AT THE SAME TIME
@@ -277,14 +287,50 @@ namespace KevinIglesias
         private void Update()
         {
             //GET INPUTS
-            GetInputs();
             
+            GetInputs();
+
             //MOVE CHARACTER
             ControlCharacter();
+
+
         }
-        
+
+        public void hudButtonPressed(string button)
+        {
+            if (button == "fwdbtn")
+            {
+                idle_player = false;
+                fwd_player = true;
+            }
+            if (button == "backbtn")
+            {
+                idle_player = false;
+                back_player = true;
+            }
+            if (button == "rightbtn")
+            {
+                idle_player = false;
+                right_player = true;
+            }
+            if (button == "leftbtn")
+            {
+                idle_player = false;
+                left_player = true;
+            }
+            if (button == "idle")
+            {
+                fwd_player = false;
+                back_player = false;
+                left_player = false;
+                right_player = false;
+                idle_player = true;
+            }
+        }
+
+
         ///INPUTS ARE READ DIRECTLY FROM KEYBOARD OR MOUSE (TO AVOID CONFLICTS WITH CURRENT PROJECT INPUT CONFIGURATION) 
-        private void GetInputs()
+        public void GetInputs()
         {
             //RESET INPUTS TO READ NEW ONES
             inputs.Clear();
@@ -308,10 +354,10 @@ namespace KevinIglesias
             //    targetInputX = -1f;
             //}
 
-            if(Input.GetKey(KeyCode.W))
+            if(Input.GetKey(KeyCode.W) || fwd_player == true)
             {
                 targetInputY = 1f;
-            }else if(Input.GetKey(KeyCode.S))
+            }else if(Input.GetKey(KeyCode.S) || back_player == true)
             {
                 targetInputY = -1f;
             }
@@ -328,10 +374,10 @@ namespace KevinIglesias
             
             //ROTATION
             float turnInput = 0f;
-            if(Input.GetKey(KeyCode.D))
+            if(Input.GetKey(KeyCode.D) || right_player == true)
             {
                 turnInput = 1f;
-            }else if(Input.GetKey(KeyCode.A))
+            }else if(Input.GetKey(KeyCode.A) || left_player == true)
             {
                 turnInput = -1f;
             }
@@ -362,7 +408,7 @@ namespace KevinIglesias
                 controlsWindow.SetActive(!controlsWindow.activeInHierarchy);
             }
         }
-        
+
         ///MOVE CHARACTER BASED ON INPUTS
         private void ControlCharacter()
         {
@@ -868,6 +914,8 @@ namespace KevinIglesias
             //UNLOAD COROUTINE (FOR CHECKS LIKE rotationCoroutine == null)
             rotationCoroutine = null;
         }
+
+        
     }
 }
 

@@ -360,6 +360,7 @@
 "Assets/Kevin Iglesias/Basic Motions/_DemoScene/Scripts/BasicMotionsAnimatorStateChanger.cs"
 "Assets/Kevin Iglesias/Basic Motions/_DemoScene/Scripts/BasicMotionsCamera.cs"
 "Assets/Kevin Iglesias/Basic Motions/_DemoScene/Scripts/BasicMotionsCharacterController.cs"
+"Assets/Scripts/Game/Controller_hud.cs"
 "Assets/Scripts/Game/GameController_marslevel.cs"
 "Assets/Scripts/Game/GetItem_controller.cs"
 "Assets/Scripts/Menu/MenuController.cs"
