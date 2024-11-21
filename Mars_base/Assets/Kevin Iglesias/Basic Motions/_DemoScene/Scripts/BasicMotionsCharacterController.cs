@@ -300,13 +300,13 @@ namespace KevinIglesias
             float targetInputX = 0f;
             float targetInputY = 0f;
 
-            if(Input.GetKey(KeyCode.E))
-            {
-                targetInputX = 1f;
-            }else if(Input.GetKey(KeyCode.Q))
-            {
-                targetInputX = -1f;
-            }
+            //if(Input.GetKey(KeyCode.E))
+            //{
+            //    targetInputX = 1f;
+            //}else if(Input.GetKey(KeyCode.Q))
+            //{
+            //    targetInputX = -1f;
+            //}
 
             if(Input.GetKey(KeyCode.W))
             {
@@ -343,36 +343,17 @@ namespace KevinIglesias
                 inputs.jump = true;
             }
             
-            //WALK
-            if(Input.GetMouseButton(1))
-            {
-                inputs.walk = true;
-            }
+            ////WALK
+            //if(Input.GetMouseButton(1))
+            //{
+            //    inputs.walk = true;
+            //}
             
-            /* DISABLED ACTIONS, ANIMATIONS ONLY AVAILABLE IN THE FULL VERSION
-            //RUN SLIDE
-            if(Input.GetKeyDown(KeyCode.LeftControl))
-            {
-                inputs.runSlide = true;
-            }
-            
-            //ROLL
-            if(Input.GetKeyDown(KeyCode.LeftShift))
-            {
-                inputs.roll = true;
-            }
-            
-            //CROUCH
-            if(Input.GetKey(KeyCode.LeftControl))
-            {
-                inputs.crouch = true;
-            }*/
-            
-            //SPRINT
-            if(Input.GetMouseButton(0))
-            {
-                inputs.sprint = true;
-            }
+            ////SPRINT
+            //if(Input.GetMouseButton(0))
+            //{
+            //    inputs.sprint = true;
+            //}
             
             
             //SHOW CONTROLS WINDOW

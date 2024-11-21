@@ -362,6 +362,7 @@
 "Assets/Kevin Iglesias/Basic Motions/_DemoScene/Scripts/BasicMotionsCharacterController.cs"
 "Assets/Scripts/Game/GameController_marslevel.cs"
 "Assets/Scripts/Game/GetItem_controller.cs"
+"Assets/Scripts/Menu/MenuController.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01_UGUI.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark02.cs"
