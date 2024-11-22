@@ -223,16 +223,17 @@ public class GameController_marslevel : MonoBehaviour
 
     public void MusicOnOff()
     {
-        if (musicaMenu.enabled == true)
+        if (AudioListener.volume == 1)
         {
-            musicaMenu.enabled = false;
+            //musicaMenu.enabled = false;
+            AudioListener.volume = 0;
             musicaOff.SetActive(true);
             musicaOn.SetActive(false);
             return;
         }
-        if (musicaMenu.enabled == false)
+        if (AudioListener.volume == 0)
         {
-            musicaMenu.enabled = true;
+            AudioListener.volume = 1;
             musicaOff.SetActive(false);
             musicaOn.SetActive(true);
             return;

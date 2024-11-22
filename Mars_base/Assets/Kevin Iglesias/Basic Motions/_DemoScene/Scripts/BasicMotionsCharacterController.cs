@@ -322,13 +322,21 @@ namespace KevinIglesias
                 idle_player = false;
                 left_player = true;
             }
-            if (button == "idle")
+            if (button == "idlefwd")
             {
                 fwd_player = false;
+            }
+            if (button == "idleback")
+            {
                 back_player = false;
+            }
+            if (button == "idleleft")
+            {
                 left_player = false;
+            }
+            if (button == "idleright")
+            {
                 right_player = false;
-                idle_player = true;
             }
         }
 

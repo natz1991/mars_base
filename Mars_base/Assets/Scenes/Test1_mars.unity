@@ -3118,7 +3118,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: idle
+            m_StringArgument: idleright
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!1001 &514913821
@@ -4173,7 +4173,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: idle
+            m_StringArgument: idleback
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!1001 &773056129
@@ -11773,7 +11773,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: idle
+            m_StringArgument: idleleft
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!1 &1608819649
@@ -13118,7 +13118,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: idle
+            m_StringArgument: idlefwd
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!1 &1756470106
