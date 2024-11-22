@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,6 +15,12 @@ public class MenuController : MonoBehaviour
     public GameObject musicaOn;
     public GameObject musicaOff;
 
+    public GameObject tittleObj;
+    public GameObject btnObj;
+    public GameObject posTittle;
+    public GameObject posBtn;
+    public int speedText = 90;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +34,8 @@ public class MenuController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        tittleObj.transform.position = Vector3.MoveTowards(tittleObj.transform.position, posTittle.transform.position, speedText * Time.deltaTime * 8);
+        btnObj.transform.position = Vector3.MoveTowards(btnObj.transform.position, posBtn.transform.position, speedText * Time.deltaTime * 8);
     }
 
     public void showBriefing()

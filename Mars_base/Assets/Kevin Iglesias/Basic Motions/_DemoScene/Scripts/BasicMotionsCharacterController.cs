@@ -241,7 +241,11 @@ namespace KevinIglesias
 
         [Header("[UI]")]
         public GameObject controlsWindow;
-        
+
+        [Header("[Sound]")]
+        public AudioSource playerAudioSrc;
+        public AudioClip walkClip;
+
         ///INITIALIZE VARIABLES
         private void Awake()
         {
@@ -357,9 +361,16 @@ namespace KevinIglesias
             if(Input.GetKey(KeyCode.W) || fwd_player == true)
             {
                 targetInputY = 1f;
-            }else if(Input.GetKey(KeyCode.S) || back_player == true)
+                playerAudioSrc.enabled = true;
+            }
+            else if(Input.GetKey(KeyCode.S) || back_player == true)
             {
                 targetInputY = -1f;
+                playerAudioSrc.enabled = true;
+            }
+            else
+            {
+                playerAudioSrc.enabled = false;
             }
             
             inputs.movement = new Vector2(targetInputX, targetInputY);
@@ -422,9 +433,12 @@ namespace KevinIglesias
                 {
                     walkLayerWeight = Mathf.MoveTowards(walkLayerWeight, 1f, Time.deltaTime * walkTransitionSpeed);
                     currentSpeed = walkSpeed;
+                    
                 }
             }else{
                 walkLayerWeight = Mathf.MoveTowards(walkLayerWeight, 0f, Time.deltaTime * walkTransitionSpeed);
+            
+                
             }
             animator[0].SetLayerWeight(walkLayer, walkLayerWeight);
             

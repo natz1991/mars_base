@@ -39,8 +39,22 @@ public class GameController_marslevel : MonoBehaviour
     public TextMeshProUGUI Timer_label;
     public bool timerOn = false;
     public GameObject TimerGameObject;
+    public GameObject TextAlerts;
+    public GameObject posView;
+    public GameObject posHide;
+    public TextMeshProUGUI alertView;
+    public int speedText = 90;
 
     public float speed = 1.0f;
+
+    [Header("Audio Controllers")]
+    public AudioSource playSound;
+    public AudioListener musicaMenu;
+    public GameObject musicaOn;
+    public GameObject musicaOff;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -65,12 +79,6 @@ public class GameController_marslevel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Timer_count -= Time.deltaTime;
-
-        //if (Timer_count <= 0.0f)
-        //{
-        //    overGame();
-        //}
         if (timerOn == true)
         {
             if (Timer_count > 0)
@@ -85,24 +93,25 @@ public class GameController_marslevel : MonoBehaviour
 
             }
         }
-        
-
-        //Timer_label.GetComponent<TMPro.TextMeshProUGUI>().text = Timer_count.ToString();
-
-        //Debug.Log(PlayerAst.GetComponent<GetItem_controller>().itemUptState);
 
         if (PlayerAst.GetComponent<GetItem_controller>().itemUptState == GetItem_controller.itemState.getItem1)
         {
+            
             item1Collect.SetActive(false);
             Item1_dropzone.SetActive(true);
             ArrowGPS.SetActive(true);
             ArrowGPS.transform.LookAt(Item1_dropzone.transform);
+            
         }
         if (PlayerAst.GetComponent<GetItem_controller>().itemUptState == GetItem_controller.itemState.dropItem1)
         {
             Item1_dropzone.SetActive(false);
             item2Collect.SetActive(true);
             ArrowGPS.SetActive(false);
+
+            TextAlerts.transform.position = Vector3.MoveTowards(TextAlerts.transform.position, posView.transform.position, speedText * Time.deltaTime *8);
+
+            alertView.text = string.Format("Volte para o caminhao e pegue o proximo objeto!");
         }
         if (PlayerAst.GetComponent<GetItem_controller>().itemUptState == GetItem_controller.itemState.getItem2)
         {
@@ -111,12 +120,17 @@ public class GameController_marslevel : MonoBehaviour
             ArrowGPS.SetActive(true);
             ArrowGPS.transform.LookAt(Item2_dropzone.transform);
 
+            TextAlerts.transform.position = Vector3.MoveTowards(TextAlerts.transform.position, posHide.transform.position, speedText * Time.deltaTime * 8);
+
         }
         if (PlayerAst.GetComponent<GetItem_controller>().itemUptState == GetItem_controller.itemState.dropItem2)
         {
             Item2_dropzone.SetActive(false);
             item3Collect.SetActive(true);
             ArrowGPS.SetActive(false);
+
+            TextAlerts.transform.position = Vector3.MoveTowards(TextAlerts.transform.position, posView.transform.position, speedText * Time.deltaTime * 8);
+            alertView.text = string.Format("Volte para o caminhao e pegue o proximo objeto. Vamos la, falta pouco!");
         }
         if (PlayerAst.GetComponent<GetItem_controller>().itemUptState == GetItem_controller.itemState.getItem3)
         {
@@ -124,6 +138,8 @@ public class GameController_marslevel : MonoBehaviour
             Item3_dropzone.SetActive(true);
             ArrowGPS.SetActive(true);
             ArrowGPS.transform.LookAt(Item3_dropzone.transform);
+
+            TextAlerts.transform.position = Vector3.MoveTowards(TextAlerts.transform.position, posHide.transform.position, speedText * Time.deltaTime * 8);
         }
         if (PlayerAst.GetComponent<GetItem_controller>().itemUptState == GetItem_controller.itemState.dropItem3)
         {
@@ -132,6 +148,7 @@ public class GameController_marslevel : MonoBehaviour
             overGame(true);
             
         }
+        
 
         
 
@@ -181,6 +198,7 @@ public class GameController_marslevel : MonoBehaviour
         PlayMenu.SetActive(false);
         PlayerAst.GetComponent<BasicMotionsCharacterController>().enabled = false;
         TimerGameObject.SetActive(false);
+        timerOn = false;
 
         if (finished == true)
         {
@@ -189,6 +207,7 @@ public class GameController_marslevel : MonoBehaviour
         else
         {
             FailMenu.SetActive(true);
+            playSound.enabled = true;
         }
     }
 
@@ -200,6 +219,24 @@ public class GameController_marslevel : MonoBehaviour
     public void backMenuGame()
     {
         SceneManager.LoadScene("Menu");
+    }
+
+    public void MusicOnOff()
+    {
+        if (musicaMenu.enabled == true)
+        {
+            musicaMenu.enabled = false;
+            musicaOff.SetActive(true);
+            musicaOn.SetActive(false);
+            return;
+        }
+        if (musicaMenu.enabled == false)
+        {
+            musicaMenu.enabled = true;
+            musicaOff.SetActive(false);
+            musicaOn.SetActive(true);
+            return;
+        }
     }
 
 }
