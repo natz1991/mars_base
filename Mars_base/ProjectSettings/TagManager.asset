@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - dropzone_1
+  - dropzone_2
+  - dropzone_3
+  - get_item1
+  - get_item2
+  - get_item3
   layers:
   - Default
   - TransparentFX
