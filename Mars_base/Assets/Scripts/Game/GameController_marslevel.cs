@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using KevinIglesias;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using static UnityEngine.GraphicsBuffer;
 
 public class GameController_marslevel : MonoBehaviour
 {
@@ -24,20 +26,28 @@ public class GameController_marslevel : MonoBehaviour
     public GameObject Item3_dropzone;
 
     public GameObject PlayerAst;
+    public GameObject ArrowGPS;
 
     [Header("HUD Objects")]
     public GameObject Countdown_label;
     public GameObject InitialBoard;
-    public GameObject PauseButton;
-    public GameObject ReturnButton;
+    public GameObject PlayMenu;
+    public GameObject PauseMenu;
+    public GameObject FailMenu;
+    public GameObject OverMenu;
     public float Timer_count;
     public TextMeshProUGUI Timer_label;
     public bool timerOn = false;
     public GameObject TimerGameObject;
 
+    public float speed = 1.0f;
     // Start is called before the first frame update
     void Start()
     {
+
+        InitialBoard.SetActive(true);
+        PlayMenu.SetActive(false);
+        PauseMenu.SetActive(false);
 
         item1Collect.SetActive(true);
         item2Collect.SetActive(false);
@@ -46,6 +56,7 @@ public class GameController_marslevel : MonoBehaviour
         Item2_dropzone.SetActive(false);
         Item3_dropzone.SetActive(false);
         TimerGameObject.SetActive(false);
+        ArrowGPS.SetActive(false);
 
 
 
@@ -70,7 +81,7 @@ public class GameController_marslevel : MonoBehaviour
             else
             {
                 Timer_count = 0;
-                overGame();
+                overGame(false);
 
             }
         }
@@ -84,33 +95,45 @@ public class GameController_marslevel : MonoBehaviour
         {
             item1Collect.SetActive(false);
             Item1_dropzone.SetActive(true);
+            ArrowGPS.SetActive(true);
+            ArrowGPS.transform.LookAt(Item1_dropzone.transform);
         }
         if (PlayerAst.GetComponent<GetItem_controller>().itemUptState == GetItem_controller.itemState.dropItem1)
         {
             Item1_dropzone.SetActive(false);
             item2Collect.SetActive(true);
+            ArrowGPS.SetActive(false);
         }
         if (PlayerAst.GetComponent<GetItem_controller>().itemUptState == GetItem_controller.itemState.getItem2)
         {
             item2Collect.SetActive(false);
             Item2_dropzone.SetActive(true);
+            ArrowGPS.SetActive(true);
+            ArrowGPS.transform.LookAt(Item2_dropzone.transform);
+
         }
         if (PlayerAst.GetComponent<GetItem_controller>().itemUptState == GetItem_controller.itemState.dropItem2)
         {
             Item2_dropzone.SetActive(false);
             item3Collect.SetActive(true);
+            ArrowGPS.SetActive(false);
         }
         if (PlayerAst.GetComponent<GetItem_controller>().itemUptState == GetItem_controller.itemState.getItem3)
         {
             item3Collect.SetActive(false);
             Item3_dropzone.SetActive(true);
+            ArrowGPS.SetActive(true);
+            ArrowGPS.transform.LookAt(Item3_dropzone.transform);
         }
         if (PlayerAst.GetComponent<GetItem_controller>().itemUptState == GetItem_controller.itemState.dropItem3)
         {
             Item3_dropzone.SetActive(false);
-            overGame();
+            ArrowGPS.SetActive(false);
+            overGame(true);
             
         }
+
+        
 
     }
 
@@ -129,8 +152,8 @@ public class GameController_marslevel : MonoBehaviour
         InitialBoard.SetActive(false);
         PlayerAst.GetComponent<BasicMotionsCharacterController>().enabled = true;
 
-        PauseButton.SetActive(true);
-        ReturnButton.SetActive(false);
+        PlayMenu.SetActive(true);
+        PauseMenu.SetActive(false);
         TimerGameObject.SetActive(true);
         timerOn = true;
 
@@ -139,34 +162,44 @@ public class GameController_marslevel : MonoBehaviour
 
     public void pauseGame()
     {
-        PauseButton.SetActive(false);
+        PlayMenu.SetActive(false);
         PlayerAst.GetComponent<BasicMotionsCharacterController>().enabled = false;
-        ReturnButton.SetActive(true);
+        PauseMenu.SetActive(true);
         timerOn = false;
     }
 
     public void returnToGame()
     {
-        PauseButton.SetActive(true);
+        PlayMenu.SetActive(true);
         PlayerAst.GetComponent<BasicMotionsCharacterController>().enabled = true;
-        ReturnButton.SetActive(false);
+        PauseMenu.SetActive(false);
         timerOn = true;
     }
 
-    public void overGame()
+    public void overGame(bool finished)
     {
+        PlayMenu.SetActive(false);
         PlayerAst.GetComponent<BasicMotionsCharacterController>().enabled = false;
         TimerGameObject.SetActive(false);
+
+        if (finished == true)
+        {
+            OverMenu.SetActive(true);
+        }
+        else
+        {
+            FailMenu.SetActive(true);
+        }
     }
 
-    void getItem()
+    public void restartGame()
     {
-
+        SceneManager.LoadScene("Test1_mars");
     }
 
-    void dropItem()
+    public void backMenuGame()
     {
-
+        SceneManager.LoadScene("Menu");
     }
 
 }
